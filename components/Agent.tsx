@@ -70,11 +70,13 @@ const Agent = ({
     setCallStatus(CallStatus.CONNECTING);
 
     console.log("CALLING VAPI START...");
-    console.log(process.env.NEXT_PUBLIC_VAPI_WEB_TOKEN);
+    console.log("assistant:", process.env.NEXT_PUBLIC_ASSISTANT_ID);
+    console.log("workflow:", process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID);
+    console.log("token:", process.env.NEXT_PUBLIC_VAPI_WEB_TOKEN);
 
     await vapi.start({
       assistantId: process.env.NEXT_PUBLIC_ASSISTANT_ID!,
-      workflow_id: process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID!, // snake case here
+      workflow_id: process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID!, // ✅ must be snake_case
       sessionId: crypto.randomUUID(),
       metadata: {
         userid: userId,
